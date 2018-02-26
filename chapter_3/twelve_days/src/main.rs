@@ -1,10 +1,7 @@
 fn main() {
     for n in 1..13 {
         println!("On the {}{} day of Christmas, my true love sent to me,", n, ordinal(n));
-
-        let mut gift_list = String::new();
-        let gift_list = gifts(n, gift_list);
-        println!("{}", gift_list);
+        gifts(n);
     }
 }
 
@@ -17,7 +14,7 @@ fn ordinal(n: u8) -> &'static str {
     }
 }
 
-fn gifts(n: u8, string: String) -> String {
+fn gifts(n: u8) {
     let gift = match n {
         12 => "12 drummers drumming",
         11 => "11 pipers piping",
@@ -34,10 +31,8 @@ fn gifts(n: u8, string: String) -> String {
          _ => "",
     };
 
-    let new_gifts = String::from(string + gift + "\n");
+    println!("{}", gift);
     if n > 0 {
-        return gifts(n - 1, new_gifts);
+        gifts(n - 1);
     }
-
-    return new_gifts;
 }
